@@ -17,17 +17,9 @@
   function cancelClose(){clearTimeout(closeTimer);dialog.classList.remove('is-leaving');}
   function favorite(id){
     if(!allowed())return;
-    $$(`button.favorite-button[data-id="${id}"]`).forEach(b=>{b.classList.remove('heart-pop');void b.offsetWidth;b.classList.add('heart-pop');const burst=document.createElement('span');burst.className='favorite-sparkles';burst.setAttribute('aria-hidden','true');for(let i=0;i<5;i++){const d=document.createElement('i');d.style.setProperty('--angle',`${i*72}deg`);burst.append(d);}b.append(burst);setTimeout(()=>{burst.remove();b.classList.remove('heart-pop');},650);});
+    $$(`button.favorite-button[data-id="${id}"]`).forEach(b=>{b.classList.add('heart-pop');setTimeout(()=>b.classList.remove('heart-pop'),220);});
   }
-  function expandPhoto(source,rect){
-    const target=$('.profile-cover img',dialog);
-    photoOrigin=rect||null;photoSrc=source?.currentSrc||source?.src||null;
-    if(!target||!source||!rect||rect.width<1||!allowed())return;
-    const destination=target.getBoundingClientRect(),base=dialog.getBoundingClientRect();
-    const clone=source.cloneNode(false);clone.removeAttribute('id');clone.removeAttribute('loading');clone.className='hero-transition';clone.alt='';clone.setAttribute('aria-hidden','true');dialog.append(clone);target.style.opacity='0';
-    const anim=clone.animate([{left:`${rect.left-base.left}px`,top:`${rect.top-base.top}px`,width:`${rect.width}px`,height:`${rect.height}px`,borderRadius:'48px 15px 0 0'},{left:`${destination.left-base.left}px`,top:`${destination.top-base.top}px`,width:`${destination.width}px`,height:`${destination.height}px`,borderRadius:'0px'}],{duration:390,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
-    anim.finished.catch(()=>{}).finally(()=>{target.style.opacity='';clone.remove();});
-  }
+  function expandPhoto(){ /* Page-level entrance only; preserve a stable reading position. */ }
   function close(callback){
     if(!dialog.open)return;
     if(!allowed()){callback();return;}
@@ -48,11 +40,6 @@
     form.addEventListener('submit',e=>{if(current!==3){e.preventDefault();e.stopImmediatePropagation();goNext();return;}for(let i=0;i<steps.length;i++)for(const el of $$('input,select,textarea',steps[i]))if(!el.checkValidity()){e.preventDefault();e.stopImmediatePropagation();show(i);el.reportValidity();return;}});
     show(0);
   }
-  document.addEventListener('pointerdown',e=>{
-    if(!allowed())return;
-    const b=e.target.closest('.btn,.bottom-nav>button,.style-filters button,.menu-row');if(!b||b.disabled)return;
-    const rect=b.getBoundingClientRect(),wave=document.createElement('span');wave.className='tap-wave';wave.setAttribute('aria-hidden','true');const size=Math.max(rect.width,rect.height)*2;wave.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;b.prepend(wave);setTimeout(()=>wave.remove(),550);
-  });
   document.addEventListener('visibilitychange',()=>document.body.classList.toggle('motion-paused',document.hidden));
   window.InkMotion={allowed,selectNav,toggle,cancelClose,favorite,expandPhoto,close,enhanceWizard};
 })();

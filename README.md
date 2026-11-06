@@ -1,33 +1,54 @@
-# Ink Collector
+# InkApp
 
-Phone-only interactive tattoo discovery demo for Costa Rica. Original fictional artist portraits and tattoo portfolio images, ivory/black/violet identity, animated ink background and five-icon glass navigation.
+![InkApp — Tu piel. Tu historia.](assets/repo-cover.svg)
 
-## Run
+Una app móvil para descubrir tatuadores por estilo en Costa Rica. Portafolios sociales con el carácter editorial de una revista callejera: **Street Zine**.
 
-Serve this directory with a static HTTP server, for example `python3 -m http.server 8080`, then open `http://localhost:8080`. No installation, API keys or paid services required.
+**[Abrir la app en GitHub Pages](https://alvaroporras2002-coder.github.io/InkCollector/?v=inkapp-20261106-4)** · **[Abrir la demo publicada](https://ink-collector-cr-demo.doordash.chatgpt.site)**
 
-## Use
+> Edición 04 · Rediseño completo de InkApp. El repositorio conserva `InkCollector` en su dirección para mantener los enlaces existentes.
 
-- Explore artists by style, province and availability.
-- Save and compare artists. Open a profile from its portfolio image.
-- Use the central + action to choose an artist and create a quote request in four steps. Text drafts stay on the device; reference images are not stored in drafts.
-- Open **Mi perfil → Mis solicitudes y citas** to review your demo requests.
-- Open **Mi estudio** to simulate contact, quotes and appointments. Appointments use sample slots with collision detection.
-- Test artist registration and approval in the demo administration view.
-- Toggle **Animaciones suaves** in the profile menu. The device's reduced-motion setting always takes priority.
+## El rediseño
 
-## Publish with GitHub Pages
+- Identidad: firma redondeada con una **i** y una **a formada por una máquina de tatuar**.
+- Negro espacial `#080B10`, blanco frío `#F4F7FA` y grises neutrales.
+- Portada fotográfica a pantalla completa, título redondeado más delgado y navegación de cinco iconos.
+- Street Zine con lectura de historias, guía de primer tatuaje y colección de estilos.
+- Búsqueda dedicada por estilo, provincia y disponibilidad; colección de favoritos y comparación.
+- Perfil del artista con identidad compacta, Desde el estudio, portafolio de tres imágenes y botón fijo Cotiza tu idea.
+- Cotización en cuatro pasos, resumen y seguimiento de solicitudes.
+- Panel del estudio, cotizaciones, citas, registro y curaduría de perfiles.
+- Interfaz pensada para celular, controles accesibles y transiciones discretas con soporte de movimiento reducido.
 
-The `gh-pages` branch contains the app at its root. In this repository, open **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, select **gh-pages** and **/(root)**, then save. The expected project address is `https://alvaroporras2002-coder.github.io/InkCollector/`; the address is live only after GitHub confirms a successful deployment.
+## Probar la demo
 
-This repository contains the app only, with relative asset paths suitable for project Pages. `.nojekyll` skips Jekyll processing. A `404.html` fallback loads the same app shell.
+1. Abre un perfil o usa **Mi idea** para elegir un artista.
+2. Completa una solicitud con datos ficticios.
+3. En **Mi espacio → Mis solicitudes**, consulta su seguimiento.
+4. En **Mi espacio → Mi estudio**, simula la respuesta del tatuador y registra una cotización.
+5. Acuerda una cita de ejemplo y explora el resto del recorrido.
 
-## Validation
+Todos los artistas, imágenes y solicitudes de ejemplo son ficticios. No hay cuentas reales, pagos ni envío de mensajes. La demo usa `localStorage`; se conservaron las claves existentes para no perder favoritos y solicitudes al actualizar.
 
-Run `node --test tests/*.test.cjs`. JavaScript has no runtime dependencies. Browser/device visual validation was not available in the build environment.
+## Desarrollo
 
-## Demo limits
+Sin dependencias ni claves API. Sirve la raíz de este repositorio con un servidor estático:
 
-Artists, artwork, amounts and availability are illustrative. Data is stored in `localStorage` in the current browser, using `inkcollector.demo.v1`. Drafts use `inkcollector.draft.<artist-id>`. Animation preference uses `inkcollector.motion`. There is no shared database, account authentication, message delivery or payment processing. Use fictitious customer information. Moving between hosting domains does not transfer browser-local records.
+```sh
+python3 -m http.server 8080
+```
+
+Abre `http://localhost:8080`.
+
+```sh
+npm test
+npm run check
+```
+
+Los archivos CSS y JS usan un identificador de versión en sus URL para evitar reutilizar la estética anterior desde la caché.
+
+## Publicación
+
+`main` y `gh-pages` contienen la misma versión de la app en la raíz. El sitio de GitHub Pages depende de la configuración del repositorio y de que GitHub termine su despliegue. No requiere Jekyll.
 
 Generated with [Codex](https://openai.com/codex/).

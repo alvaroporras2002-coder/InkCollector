@@ -1,8 +1,8 @@
 {
-  "name": "ink-collector",
-  "version": "1.0.0",
+  "name": "inkapp",
+  "version": "4.0.0",
   "private": true,
-  "description": "Phone-only tattoo artist discovery and quote demo",
+  "description": "InkApp \u2014 mobile tattoo portfolio and street zine demo",
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "check": "node --check app.js && node --check motion.js && node --check core.js"
