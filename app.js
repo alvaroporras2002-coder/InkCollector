@@ -1,4 +1,4 @@
-/* Ink Collector — isolated, browser-local interactive demo. */
+/* InkApp — isolated, browser-local interactive demo. */
 (() => {
   'use strict';
   const C=window.InkCore, KEY='inkcollector.demo.v1';
@@ -35,8 +35,8 @@
     document.body.dataset.screen=tab;
     $$('.bottom-nav [data-mobile-tab]').forEach(b=>{const active=b.dataset.mobileTab===tab;b.classList.toggle('is-active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
     window.InkMotion?.selectNav(tab==='saved'?3:tab==='explore'?0:4);
-    if($('#explore-title'))$('#explore-title').innerHTML=onlyFavorites?'Tu <span class="serif-accent">colección.</span>':'Encuentra tu <span class="serif-accent">conexión.</span>';
-    if($('#explore-kicker'))$('#explore-kicker').textContent=onlyFavorites?'EL ARTE QUE CONECTA CONTIGO':'ENCUENTRA TU CONEXIÓN';
+    if($('#explore-title'))$('#explore-title').innerHTML=onlyFavorites?'Tu <span class="serif-accent">colección.</span>':'En la piel<span class="serif-accent">.</span>';
+    if($('#explore-kicker'))$('#explore-kicker').textContent=onlyFavorites?'EL ARTE QUE CONECTA CONTIGO':'COSTA RICA / STREET ZINE';
   }
   function renderArtists(){
     syncMobileNav();
